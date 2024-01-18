@@ -22,8 +22,8 @@ header = ["Numurs", "Datums", "url",
 
 def generate_file(chosen_mark, mode):
     if mode == "Real-time":
-        # create directory wb for files
-        os.mkdir("wb")
+        if not os.path.exists("wb"):
+            os.mkdir("wb")
         get_urls(chosen_mark)
         get_info(chosen_mark)
         ui.show_data(chosen_mark)
