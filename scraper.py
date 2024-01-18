@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 import openpyxl
-
+import os
 import ui
 
 header = ["Numurs", "Datums", "url",
@@ -22,6 +22,8 @@ header = ["Numurs", "Datums", "url",
 
 def generate_file(chosen_mark, mode):
     if mode == "Real-time":
+        # create directory wb for files
+        os.mkdir("wb")
         get_urls(chosen_mark)
         get_info(chosen_mark)
         ui.show_data(chosen_mark)
@@ -135,5 +137,3 @@ def get_info(chosen_mark):
                 ws.cell(row=i, column=j).value = "false"
 
         wb.save("wb/" + chosen_mark + ".xlsx")
-
-# generate_file("audi", 0)
